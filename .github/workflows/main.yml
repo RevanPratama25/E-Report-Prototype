@@ -2,7 +2,7 @@ name: EReport
 
 on:
   push:
-    branches: [ main ] #sesuaikan dengan branch repositoryl
+    branches: [ main ]
 
 jobs:
   web-deploy:
@@ -15,12 +15,13 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          protocol:  ftps
-          passive : true
-          server: 151.243.222.70    #ip server hosting anda- contoh menggunakan ip hostingdata.id
-          username: random@arcueia.my.id   #sesuaikan dengan username dan password ftp anda
+          server: 151.243.222.70
+          username: random@arcueia.my.id
           password: randompassword
-          # exclude accepts a multiline string. Using a block scalar avoids YAML alias parsing.
+          protocol: ftps
+          security: explicit
+          passive: true
+          timeout: 60000
           exclude: |
             **/.git/**
             **/node_modules/**
